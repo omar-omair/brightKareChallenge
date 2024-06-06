@@ -1,0 +1,108 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model medical_history {
+  history_id   String    @id @default(uuid())
+  history_name String
+  description  String
+  disease      disease[]
+  patient      patient   @relation(fields: [patientId], references: [id])
+  patientId    String    @unique
+}
+
+model disease {
+  disease_id   String          @id @default(uuid())
+  disease_name String
+  history      medical_history @relation(fields: [history_id], references: [history_id])
+  history_id   String
+}
+
+model measurement {
+  measurement_id    String            @id @default(uuid())
+  name              String
+  owner_id          String
+  measaurement_type mesaurement_types
+  measurement_value Float
+  measaurement_unit String
+  measurement_on    DateTime
+  created_at        DateTime          @default(now())
+}
+
+model prescribed_medication {
+  medication            medication @relation(fields: [medication_id], references: [medication_id])
+  medication_id         String
+  patient               patient    @relation(fields: [patient_id], references: [id])
+  patient_id            String
+  status                status
+  frequency             String
+  prescribing_physician doctor     @relation(fields: [doctor_id], references: [id])
+  doctor_id             String
+  start_date            DateTime
+  end_date              DateTime
+
+  @@id([medication_id, patient_id, start_date])
+}
+
+model medication {
+  medication_id   String                  @id @default(uuid())
+  medication_name String
+  prescribed      prescribed_medication[]
+}
+
+model patient {
+  id           String                  @id @default(uuid())
+  legal_id     String                  @unique
+  dob          DateTime
+  history      medical_history?
+  sex          gender
+  username     String                  @unique
+  password     String
+  email        String                  @unique
+  phone_number String                  @unique
+  doctors      doctor[]
+  medications  prescribed_medication[]
+}
+
+model doctor {
+  id                     String                  @id @default(uuid())
+  department             department              @relation(fields: [department_id], references: [department_id])
+  department_id          String
+  patients               patient[]
+  prescribed_medications prescribed_medication[]
+}
+
+model department {
+  department_id   String   @id @default(uuid())
+  department_name String
+  doctors         doctor[]
+}
+
+enum mesaurement_types {
+  weight
+  blood_pressure_systolic
+  blood_pressure_diastolic
+}
+
+enum gender {
+  M
+  F
+}
+
+enum status {
+  active
+  completed
+  not_Completed
+  pending
+}

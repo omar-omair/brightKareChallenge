@@ -30,8 +30,8 @@ router.post("/register", async (req: Request, res: Response) => {
 
             else if (req.body.name && req.body.dob && req.body.sex && req.body.password && req.body.phone_number) {
                 try {
-                    let hashedPassword = bcrypt.hashSync(req.body.password, 10)
-                    let user = prisma.patient.create({
+                    let hashedPassword = await bcrypt.hash(req.body.password, 10)
+                    let user = await prisma.patient.create({
                         data: {
                             legal_id: req.body.legal_id,
                             name: req.body.name,
@@ -46,8 +46,7 @@ router.post("/register", async (req: Request, res: Response) => {
                     })
 
                     const token = jwt.encode({ username: req.body.username, ex: Math.floor(Date.now() / 1000) + 1800 }, secret); // create token with expiration date of 30mins
-                    //res.status(200).json({ token: token }) // returning the token
-                    res.status(200).json(user)
+                    res.status(200).json({ token: token }) // returning the token
                 }
                 catch (ex) {
                     res.status(500).json({ error: ex })

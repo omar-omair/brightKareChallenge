@@ -21,7 +21,7 @@ app.use(router);
 
 // Routes
 app.get('/', async (req: Request, res: Response) => {
-    let med = await prisma.medication.findMany()
+    let med = await prisma.patient.findMany()
     console.log(med)
     res.json(med)
 });

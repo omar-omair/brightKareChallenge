@@ -64,6 +64,7 @@ model medication {
 model patient {
   id           String                  @id @default(uuid())
   legal_id     String                  @unique
+  name         String
   dob          DateTime
   history      medical_history?
   sex          gender

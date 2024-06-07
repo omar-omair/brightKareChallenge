@@ -1,10 +1,9 @@
-import { PrismaClient } from "@prisma/client";
 import { Request, Response } from 'express';
 
 const jwt = require("jwt-simple");
 const router = require("express").Router();
 const bcrypt = require("bcryptjs");
-const prisma = new PrismaClient();
+const prisma = require("./../prismaClient")
 const bodyParser = require("body-parser");
 
 require("dotenv").config()
@@ -47,6 +46,7 @@ router.post("/register", async (req: Request, res: Response) => {
 
                     const token = jwt.encode({ username: req.body.username, ex: Math.floor(Date.now() / 1000) + 1800 }, secret); // create token with expiration date of 30mins
                     res.status(200).json({ token: token }) // returning the token
+
                 }
                 catch (ex) {
                     res.status(500).json({ error: ex })

@@ -1,11 +1,10 @@
 import { Request, Response, NextFunction, Express } from 'express';
-import { PrismaClient } from '@prisma/client';
 
 const express = require('express');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
-const prisma = new PrismaClient();
+const prisma = require("./prismaClient")
 const router = express.Router();
 
 const app: Express = express();

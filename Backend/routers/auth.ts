@@ -5,7 +5,6 @@ const jwt = require("jwt-simple");
 const router = require("express").Router();
 const bcrypt = require("bcryptjs");
 const prisma = require("./../prismaClient")
-const bodyParser = require("body-parser");
 const patientSchema = require("./../zod_schemas/patient");
 const loginPatientSchema = require("./../zod_schemas/patientLogin")
 

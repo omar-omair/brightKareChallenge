@@ -34,7 +34,7 @@ model measurement {
   name              String
   owner_id          String
   measaurement_type mesaurement_types
-  measurement_value Float
+  measurement_value String
   measaurement_unit String
   measurement_on    DateTime
   created_at        DateTime          @default(now())

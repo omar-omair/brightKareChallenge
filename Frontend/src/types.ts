@@ -4,3 +4,12 @@ export interface cardProps {
     name: string,
     url: string
 }
+
+export interface timeLineProps {
+    title: string,
+    desc: string,
+    date: string,
+    backgroundColor?: string,
+    position?: number,
+    last?: number
+}

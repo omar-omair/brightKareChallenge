@@ -8,7 +8,8 @@ export default {
     extend: {
       colors: {
         sub_gray: "#C6C6C6",
-        icon_bg: "#F3F9FD"
+        icon_bg: "#F3F9FD",
+        outer_ellipse: "#D6EAF8"
       }
     },
   },

@@ -5,7 +5,7 @@ import hamburger from "../assets/hamburger.png"
 
 function Nav(): ReactElement {
     return (
-        <header className='flex justify-end space-x-3 p-2 items-center mb-3'>
+        <header className='flex justify-end space-x-3 p-2 items-center mb-5'>
             <img src={hamburger} alt="Expand" className='hidden max-sm:block w-7 h-7 mr-auto cursor-pointer' />
             <div className='flex relative py-1'>
                 <img src={notification_icon} alt="Notifications" className='w-7 h-7 cursor-pointer' />

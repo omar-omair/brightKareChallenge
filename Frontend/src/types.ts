@@ -13,3 +13,9 @@ export interface timeLineProps {
     position?: number,
     last?: number
 }
+
+export interface historyProps {
+    title: string,
+    desc: string,
+    backgroundColor?: string,
+}

@@ -60,7 +60,7 @@ const DatePicker = ({ futureLocked }: { futureLocked: boolean }): ReactElement =
     console.log(currentDate)
 
     return (
-        <div className='bg-white ml-2 mt-2 rounded-md shadow-sm p-4 pb-20 w-[30rem]'>
+        <div className='bg-white ml-2 mt-2 rounded-md shadow-sm p-4 pb-20 w-[30rem] aspect-[1]'>
 
             <header className='flex w-full items-center justify-between mb-6'>
                 <div className="flex space-x-3 items-center">

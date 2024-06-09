@@ -5,6 +5,7 @@ import Records from './records/records'
 import Nav from './nav/nav'
 import TimeLine from './timeline/timeline'
 import DatePicker from './datePicker/datePicker'
+import History from './history/history'
 
 function App() {
 
@@ -14,6 +15,7 @@ function App() {
       <Records />
       <TimeLine />
       <DatePicker futureLocked={true} />
+      <History />
 
     </div>
   )

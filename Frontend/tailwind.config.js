@@ -9,7 +9,9 @@ export default {
       colors: {
         sub_gray: "#C6C6C6",
         icon_bg: "#F3F9FD",
-        outer_ellipse: "#D6EAF8"
+        outer_ellipse: "#D6EAF8",
+        weekDay: "#1F618D",
+        selectedDay: '#004080'
       }
     },
   },

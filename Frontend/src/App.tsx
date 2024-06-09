@@ -13,7 +13,7 @@ function App() {
       <Nav />
       <Records />
       <TimeLine />
-      <DatePicker />
+      <DatePicker futureLocked={true} />
 
     </div>
   )

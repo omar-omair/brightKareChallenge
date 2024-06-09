@@ -4,6 +4,7 @@ import './App.css'
 import Records from './records/records'
 import Nav from './nav/nav'
 import TimeLine from './timeline/timeline'
+import DatePicker from './datePicker/datePicker'
 
 function App() {
 
@@ -12,6 +13,8 @@ function App() {
       <Nav />
       <Records />
       <TimeLine />
+      <DatePicker />
+
     </div>
   )
 }

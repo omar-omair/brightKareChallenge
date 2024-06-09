@@ -19,3 +19,13 @@ export interface historyProps {
     desc: string,
     backgroundColor?: string,
 }
+
+export interface personalProps {
+    name: string,
+    gender: string,
+    age: number,
+    address?: string,
+    job?: string,
+    phone_number: string,
+    email: string
+}

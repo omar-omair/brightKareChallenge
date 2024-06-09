@@ -11,7 +11,9 @@ export default {
         icon_bg: "#F3F9FD",
         outer_ellipse: "#D6EAF8",
         weekDay: "#1F618D",
-        selectedDay: '#004080'
+        selectedDay: '#004080',
+        sub_tag: "#8C8C8C",
+        cig_bg: "#FF8080"
       }
     },
   },

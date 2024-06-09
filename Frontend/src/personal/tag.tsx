@@ -1,8 +1,12 @@
 import { ReactElement } from 'react'
+import { tagProps } from '../types'
 
-function Tag({ content }: { content: "String" }): ReactElement {
+function Tag({ content, fontColor, backgroundColor }: tagProps): ReactElement {
+    let properties: string = `bg-[${backgroundColor}] text-[${fontColor}]`
+
     return (
-        <div className={``}>{content}</div>
+
+        <div style={{ backgroundColor: `${backgroundColor}`, color: `${fontColor}`, /*border: `solid 1px ${fontColor}`*/ }} className={`font-semibold shadow-sm rounded-full w-fit px-2 py-1 overflow-clip`}>{content}</div>
     )
 }
 

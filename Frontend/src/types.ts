@@ -29,3 +29,9 @@ export interface personalProps {
     phone_number: string,
     email: string
 }
+
+export interface tagProps {
+    content: string,
+    backgroundColor?: string,
+    fontColor: string,
+} 

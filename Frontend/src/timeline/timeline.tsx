@@ -20,7 +20,8 @@ function TimeLine(): ReactElement {
             <div>
                 {timeEntries.map((timeEntry, index) => (
                     <TimeEntry key={index} title={timeEntry.title} date={timeEntry.date}
-                        desc={timeEntry.desc} backgroundColor={`${index % 2 !== 0 ? "bg-icon_bg" : ""}`} position={index} last={timeEntries.length - 1} />
+                        desc={timeEntry.desc} backgroundColor={`${index % 2 !== 0 ? "bg-icon_bg" : ""}`}
+                        position={index} last={timeEntries.length - 1} />
                 ))}
             </div>
         </div>

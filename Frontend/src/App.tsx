@@ -30,9 +30,18 @@ function App() {
             <button className='font-semibold text-sub_tag'>My Plans</button>
           </div>
 
+          <div className='flex flex-col lg:hidden gap-5'>
+            <Personal />
+            <Records />
+            <TimeLine />
+            <DatePicker futureLocked={true} />
+            <History />
+          </div>
+
+          <div className=' bg-transparent h-10'></div>
 
 
-          <div className='grid grid-cols-3 grid-rows-[auto_1fr_1fr] items-start gap-4 mb-10'>
+          <div className='hidden lg:grid grid-cols-3 grid-rows-[auto_1fr_1fr] items-start gap-x-5 gap-y-4 mb-10'>
 
             <div className='col-start-1 col-span-2 row-start-1'>
               <Records />
@@ -55,6 +64,7 @@ function App() {
             </div>
           </div>
 
+          <div className='bg-transparent hidden lg:block h-96'></div>
 
         </div>
       </div>

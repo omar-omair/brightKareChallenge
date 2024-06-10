@@ -48,6 +48,7 @@ function Personal(): ReactElement {
                     <p className='text-sub_tag leading-8'>Job</p>
                 </div>
             </div>
+
             <div className='place-self-start px-8 py-4'>
                 <p className='text-xl font-bold'>Contact Information</p>
                 <div className='flex items-center p-4 space-x-4'>

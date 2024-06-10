@@ -77,7 +77,7 @@ const DatePicker = ({ futureLocked }: { futureLocked: boolean }): ReactElement =
                                 {day.getDate()}
                             </div>
                         ) : (
-                            <div key={index} className={`cursor-pointer h-7 hover:text-blue-600 place-self-center flex aspect-square items-center justify-center ${index === currentDate.getDate() - 1 ? " text-selectedDay bg-outer_ellipse rounded-full shadow-md" : ""}`} onClick={() => setCurrentDate(day)}>
+                            <div key={index} className={`cursor-pointer h-7 hover:text-blue-600 place-self-center flex aspect-square items-center justify-center ${index === currentDate.getDate() - 1 ? " text-selectedDay bg-outer_ellipse rounded-full shadow-md" : ""}`} onClick={() => useDateStore.setState({ currentDate: day })}>
                                 {day.getDate()}
                             </div>
                         )

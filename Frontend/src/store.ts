@@ -1,5 +1,5 @@
 import { create } from "zustand"
-import { cardProps, historyProps, medicationProps, tagProps, timeLineProps } from "./types"
+import { cardProps, historyProps, medicationProps, tagProps, timeLineProps, personalProps } from "./types"
 import bmi from './assets/bmi.png'
 import weight from './assets/weight.png'
 import height from './assets/height.png'
@@ -10,13 +10,7 @@ type recordStore = {
 }
 
 type userStore = {
-    name: string,
-    gender: string,
-    age: number,
-    address: string,
-    email: string,
-    job: string,
-    phone_Number: string,
+    info: personalProps,
     diaTags: tagProps[],
     barTags: tagProps[]
     historyEntries: historyProps[],
@@ -45,13 +39,16 @@ export const useDateStore = create<dateStore>((set) => ({
 }))
 
 export const useUserStore = create<userStore>((set) => ({
-    name: "N/A",
-    gender: "N/A",
-    age: 0,
-    address: "N/A",
-    email: "N/A",
-    job: "N/A",
-    phone_Number: "N/A",
+    info: {
+        name: "N/A",
+        gender: "N/A",
+        age: 0,
+        address: "N/A",
+        email: "N/A",
+        job: "N/A",
+        phone_number: "N/A"
+    },
+
     diaTags: [],
     barTags: [],
     historyEntries: [],

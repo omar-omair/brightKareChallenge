@@ -8,18 +8,17 @@ import DatePicker from './datePicker/datePicker'
 import History from './history/history'
 import Personal from './personal/personal'
 import { personalProps } from './types'
+import { MOBILE_W } from './constants'
 
 function App() {
-  const [person, setPerson] = useState<personalProps>({ name: "Ali Alkhatani", email: "Ali@test.com", age: 39, gender: "M", phone_number: "+966503034500", address: "Riyadh" })
-
   return (
-    <div>
+    <div className={`flex flex-col flex-shrink-0 min-w-[${MOBILE_W}rem]`}>
       <Nav />
       <Records />
       <TimeLine />
       <DatePicker futureLocked={true} />
       <History />
-      <Personal name={person.name} age={person.age} gender={person.gender} email={person.email} address={person.address} phone_number={person.phone_number} />
+      <Personal />
 
     </div>
   )

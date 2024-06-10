@@ -4,14 +4,14 @@ import timeline from './../assets/timeline.png'
 import { timeLineProps } from '../types'
 import TimeEntry from './timeEntry'
 import { useUserStore } from '../store'
-import { MOBILE_W } from '../constants'
+import { DESKTOP_W, MOBILE_W } from '../constants.tsx'
 
 function TimeLine(): ReactElement {
 
     let timeEntries = useUserStore((state) => state.timeEntries)
 
     return (
-        <div className={`w-[${MOBILE_W}rem] aspect-[0.72] flex-shrink-0 ml-2 overflow-auto flex flex-col shadow-sm rounded-lg bg-white mt-5`}>
+        <div className={`w-[${MOBILE_W}rem] lg:w-[${DESKTOP_W}rem] aspect-[0.72] flex-shrink-0 ml-2 overflow-auto flex flex-col shadow-sm rounded-lg bg-white mt-5`}>
             <header className='flex w-full items-center justify-between p-4 mb-3'>
                 <div className="flex space-x-3 items-center">
                     <Icon url={timeline} size={10} />

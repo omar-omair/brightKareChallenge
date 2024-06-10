@@ -4,6 +4,7 @@ import timeline from './../assets/timeline.png'
 import left_arrow from './../assets/left-arrow.png'
 import right_arrow from './../assets/right-arrow.png'
 import { useDateStore } from '../store'
+import { DESKTOP_W, MOBILE_W } from '../constants';
 
 
 const DatePicker = ({ futureLocked }: { futureLocked: boolean }): ReactElement => {
@@ -38,13 +39,13 @@ const DatePicker = ({ futureLocked }: { futureLocked: boolean }): ReactElement =
             newYear -= 1; // Decrement the year
         }
 
-        // Set the new date with potentially new year and month
+        // Set the new date with new year and month
         const newDate = new Date(newYear, newMonth, 1);
         useDateStore.setState({ currentDate: newDate });
     }
 
     return (
-        <div className='bg-white ml-2 mt-2 rounded-md shadow-sm p-4 pb-20 w-[30rem] aspect-[1]'>
+        <div className={`bg-white ml-2 mt-2 rounded-md shadow-sm p-4 pb-20 w-[${MOBILE_W}rem] lg:w-[${DESKTOP_W}rem] aspect-[1]`}>
 
             <header className='flex w-full items-center justify-between mb-6'>
                 <div className="flex space-x-3 items-center">

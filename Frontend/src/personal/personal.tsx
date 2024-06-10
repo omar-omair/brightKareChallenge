@@ -5,19 +5,21 @@ import cig from '../assets/cig.png'
 import phone from '../assets/phone-call.png'
 import mail from '../assets/mail.png'
 import Tag from './tag'
-import { MOBILE_W } from '../constants'
+import { DESKTOP_W, MOBILE_W } from '../constants'
+import { useUserStore } from '../store'
 
-function Personal({ name, age, gender, email, phone_number, address, job }: personalProps): ReactElement {
+function Personal(): ReactElement {
     let redBg: string = "#FEF8F8"
     let redFont: string = "#C50000"
     let blueBg: string = "#F8FBFE"
     let blueFont: string = "#004080"
 
-    const [diaTags, setDiaTags] = useState<tagProps[]>([{ content: 'Asthma', backgroundColor: redBg, fontColor: redFont }, { content: 'Diabetes', backgroundColor: redBg, fontColor: redFont }, { content: 'High BP', backgroundColor: redBg, fontColor: redFont }, { content: 'Weak Heart', backgroundColor: redBg, fontColor: redFont }])
-    const [barTags, setBarTags] = useState<tagProps[]>([{ content: 'Gluten', backgroundColor: blueBg, fontColor: blueFont }, { content: 'Sugar', backgroundColor: blueBg, fontColor: blueFont }])
+    let info = useUserStore((state) => state.info)
+    const diaTags = useUserStore((state) => state.diaTags)
+    const barTags = useUserStore((state) => state.barTags)
 
     return (
-        <div className={`aspect-[0.36] ml-2 mt-5 w-[${MOBILE_W}rem] lg:w-[25rem] rounded-lg bg-white overflow-auto shadow-md flex justify-start flex-col`}>
+        <div className={`aspect-[0.36] ml-2 mt-5 w-[${MOBILE_W}rem] lg:w-[${DESKTOP_W}rem] rounded-lg bg-white overflow-auto shadow-md flex justify-start flex-col`}>
             <header className='flex w-full items-center justify-end p-4 mb-10'>
                 <p className='text-xs text-gray-600 font-semibold opacity-60 cursor-pointer mt-[1rem]'>Edit</p>
             </header>
@@ -26,23 +28,23 @@ function Personal({ name, age, gender, email, phone_number, address, job }: pers
                 <div className=' bg-cig_bg absolute -top-[1rem] left-[14.5rem] rounded-full w-8 h-8 px-1 py-2 text-xs shadow-md text-white flex justify-center items-center'>
                     <img src={cig} alt="cigar" className='h-4 w-4' />
                 </div>
-                <p className='text-xl'>{name || "Ali"}</p>
+                <p className='text-xl'>{info.name}</p>
             </div>
             <div className='grid grid-cols-2 place-self-center mb-10 gap-x-32 gap-y-10 '>
                 <div className='place-self-center'>
-                    <p>{gender || "Male"}</p>
+                    <p>{info.gender}</p>
                     <p className='text-sub_tag leading-8'>Gender</p>
                 </div>
                 <div className='place-self-center'>
-                    <p>{age || "38"}</p>
+                    <p>{info.age}</p>
                     <p className='text-sub_tag leading-8'>Age</p>
                 </div>
                 <div className='place-self-center'>
-                    <p>{address || "Riyadh"}</p>
+                    <p>{info.address}</p>
                     <p className='text-sub_tag leading-8'>Address</p>
                 </div>
                 <div className='place-self-center'>
-                    <p>{job || "Accountant"}</p>
+                    <p>{info.job}</p>
                     <p className='text-sub_tag leading-8'>Job</p>
                 </div>
             </div>
@@ -50,11 +52,11 @@ function Personal({ name, age, gender, email, phone_number, address, job }: pers
                 <p className='text-xl font-bold'>Contact Information</p>
                 <div className='flex items-center p-4 space-x-4'>
                     <img src={phone} alt="" className='h-5 w-5' />
-                    <p className='text-lg'>{phone_number}</p>
+                    <p className='text-lg'>{info.phone_number}</p>
                 </div>
                 <div className='flex items-center p-4 space-x-4'>
                     <img src={mail} alt="" className='h-5 w-5' />
-                    <p className='text-lg'>{email}</p>
+                    <p className='text-lg'>{info.email}</p>
                 </div>
             </div>
 

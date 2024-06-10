@@ -36,7 +36,7 @@ export interface tagProps {
     fontColor: string,
 }
 
-export interface medicationProps {
+export interface medProps {
     name: string,
     status: string
     dosage: string,

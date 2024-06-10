@@ -6,8 +6,6 @@ import doctor from '../assets/doctor.png'
 function Sidebar(): ReactElement {
 
     let entries = useSideBarStore((state) => state.entries)
-    let selectedEntryIndex = useSideBarStore((state) => state.selectedEntryIndex)
-
 
     return (
         <div className='h-full overflow-hidden bg-side_bar_bg shadow-lg py-20 mr-10'>

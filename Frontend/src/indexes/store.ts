@@ -1,5 +1,5 @@
 import { create } from "zustand"
-import { cardProps, historyProps, medicationProps, tagProps, timeLineProps, personalProps, sideProps } from "./types"
+import { cardProps, historyProps, tagProps, timeLineProps, personalProps, sideProps, medProps } from "./types"
 import bmi from '../assets/bmi.png'
 import weight from '../assets/weight.png'
 import height from '../assets/height.png'
@@ -16,7 +16,7 @@ type userStore = {
     historyEntries: historyProps[],
     timeEntries: timeLineProps[],
     records: cardProps[]
-    medications: medicationProps[],
+    medications: medProps[],
     notifications: number,
 
     /*

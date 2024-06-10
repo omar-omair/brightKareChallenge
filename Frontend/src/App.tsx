@@ -7,6 +7,7 @@ import History from './history/history'
 import Personal from './personal/personal'
 import Sidebar from './sidebar/sidebar'
 import { useUserStore } from './indexes/store'
+import Medication from './medication/medication'
 
 function App() {
 
@@ -61,6 +62,10 @@ function App() {
 
             <div className='col-start-3 col-span-1 row-start-1 row-span-3'>
               <Personal />
+            </div>
+
+            <div className='col-start-1 col-span-3 row-start-4'>
+              <Medication />
             </div>
           </div>
 

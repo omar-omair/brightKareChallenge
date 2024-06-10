@@ -2,6 +2,7 @@ import { ReactElement } from 'react'
 import { useUserStore } from '../indexes/store'
 import Icon from '../icon'
 import pill from '../assets/meds.png'
+import MedEntry from './medEntry'
 
 function Medication(): ReactElement {
 
@@ -16,6 +17,35 @@ function Medication(): ReactElement {
                 </div>
                 <p className='text-xs text-gray-600 font-semibold opacity-60 cursor-pointer'>Edit</p>
             </header>
+
+            <div className='p-2'>
+
+                <table className="table-auto w-full overflow-hidden">
+                    <thead>
+                        <tr>
+                            <th className="px-4 py-2">Medication Name</th>
+                            <th className="px-4 py-2">Status</th>
+                            <th className="px-4 py-2">Dosage</th>
+                            <th className="px-4 py-2">Frequency</th>
+                            <th className="px-4 py-2">Prescribing Physician</th>
+                            <th className="px-4 py-2">Start Date</th>
+                            <th className="px-4 py-2">End Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {entries.map((entry, index) => (
+                            <tr>
+                                <MedEntry key={index} name={entry.name} status={entry.status} dosage={entry.dosage}
+                                    frequency={entry.frequency} prescribing_physician={entry.prescribing_physician}
+                                    start_date={entry.start_date} end_date={entry.end_date}
+                                />
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+
+
+            </div>
         </div>
     )
 }

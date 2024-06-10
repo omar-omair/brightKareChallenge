@@ -42,8 +42,8 @@ export interface medProps {
     dosage: string,
     frequency: string,
     prescribing_physician: string,
-    start_date: string,
-    end_date: string,
+    start_date?: string,
+    end_date?: string,
 }
 
 export interface sideProps {

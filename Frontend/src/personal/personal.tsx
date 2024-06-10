@@ -1,31 +1,31 @@
-import { ReactElement, useState } from 'react'
+import { ReactElement } from 'react'
 import avatar from '../assets/avatar.png'
-import { personalProps, tagProps } from '../types'
 import cig from '../assets/cig.png'
 import phone from '../assets/phone-call.png'
 import mail from '../assets/mail.png'
 import Tag from './tag'
-import { DESKTOP_W, MOBILE_W } from '../constants'
 import { useUserStore } from '../store'
 
 function Personal(): ReactElement {
+    /*
     let redBg: string = "#FEF8F8"
     let redFont: string = "#C50000"
     let blueBg: string = "#F8FBFE"
     let blueFont: string = "#004080"
+    */
 
     let info = useUserStore((state) => state.info)
     const diaTags = useUserStore((state) => state.diaTags)
     const barTags = useUserStore((state) => state.barTags)
 
     return (
-        <div className={`aspect-[0.36] ml-2 mt-5 w-[${MOBILE_W}rem] lg:w-[${DESKTOP_W}rem] rounded-lg bg-white overflow-auto shadow-md flex justify-start flex-col`}>
+        <div className={`aspect-[0.36] ml-2 mt-5 w-mobile lg:w-desktop rounded-lg bg-white overflow-auto shadow-md flex justify-start flex-col`}>
             <header className='flex w-full items-center justify-end p-4 mb-10'>
                 <p className='text-xs text-gray-600 font-semibold opacity-60 cursor-pointer mt-[1rem]'>Edit</p>
             </header>
             <div className='flex items-center relative justify-center flex-col space-y-4 mb-10'>
                 <img src={avatar} alt="avatar" className='w-32 aspect-square mb-4' />
-                <div className=' bg-cig_bg absolute -top-[1rem] left-[14.5rem] rounded-full w-8 h-8 px-1 py-2 text-xs shadow-md text-white flex justify-center items-center'>
+                <div className=' bg-cig_bg absolute lg:-top-[1rem] lg:left-[16.5rem] -top-[1rem] left-[15rem] rounded-full w-8 h-8 px-1 py-2 text-xs shadow-md text-white flex justify-center items-center'>
                     <img src={cig} alt="cigar" className='h-4 w-4' />
                 </div>
                 <p className='text-xl'>{info.name}</p>

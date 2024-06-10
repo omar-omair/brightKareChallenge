@@ -13,7 +13,18 @@ export default {
         weekDay: "#1F618D",
         selectedDay: '#004080',
         sub_tag: "#8C8C8C",
-        cig_bg: "#FF8080"
+        cig_bg: "#FF8080",
+        side_bar_bg: "#0056B3",
+      },
+
+      width: {
+        mobile: '27.25rem',
+        desktop: `30rem`,
+      },
+
+      minWidth: {
+        mobile: '27.25rem',
+        desktop: `30rem`,
       }
     },
   },

@@ -3,8 +3,7 @@ import { ReactElement } from 'react'
 function Sidebar(): ReactElement {
 
     return (
-        <div>sidebar</div>
+        <div className=''></div>
     )
 }
 
-export default Sidebar

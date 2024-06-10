@@ -12,15 +12,21 @@ import { MOBILE_W } from './constants'
 
 function App() {
   return (
-    <div className={`flex flex-col flex-shrink-0 min-w-[${MOBILE_W}rem]`}>
-      <Nav />
-      <Records />
-      <TimeLine />
-      <DatePicker futureLocked={true} />
-      <History />
-      <Personal />
+    <>
 
-    </div>
+      <div className={`flex flex-col flex-shrink-0`}>
+        <Nav />
+        <Records />
+        <TimeLine />
+        <DatePicker futureLocked={true} />
+        <History />
+        <Personal />
+
+      </div>
+
+
+    </>
+
   )
 }
 

@@ -3,6 +3,7 @@ import Icon from '../icon';
 import timeline from './../assets/timeline.png'
 import left_arrow from './../assets/left-arrow.png'
 import right_arrow from './../assets/right-arrow.png'
+import { useDateStore } from '../store'
 
 
 const DatePicker = ({ futureLocked }: { futureLocked: boolean }): ReactElement => {
@@ -12,8 +13,11 @@ const DatePicker = ({ futureLocked }: { futureLocked: boolean }): ReactElement =
     const months: string[] = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
     const changeMonth = (num: number) => {
+
+        let currentDate: Date = useDateStore((state) => state.currentDate) //reading current date from zustand store
         const currentYear = currentDate.getFullYear();
         const currentMonth = currentDate.getMonth();
+
 
         // Calculate the new month and year
         let newYear = currentYear;
@@ -36,28 +40,8 @@ const DatePicker = ({ futureLocked }: { futureLocked: boolean }): ReactElement =
 
         // Set the new date with potentially new year and month
         const newDate = new Date(newYear, newMonth, 1);
-        setCurrentDate(newDate);
-
+        useDateStore.setState({ currentDate: newDate });
     }
-
-    const updateCalendar = (e: Event) => {
-        console.log("h1")
-        const target = e.target as HTMLInputElement
-        console.log(target.value)
-        if (target != null) {
-            if (target.value.split(" ").length == 2) {
-                let month: number = months.indexOf(target.value.split(" ")[0])
-                let year: number = parseInt(target.value.split(" ")[1]);
-                if (month != -1 && year > 1900 && year < 2100) {
-                    console.log({ month: month, year: year })
-                    setCurrentDate(new Date(year, month, 1));
-                }
-            }
-        }
-    }
-
-
-    console.log(currentDate)
 
     return (
         <div className='bg-white ml-2 mt-2 rounded-md shadow-sm p-4 pb-20 w-[30rem] aspect-[1]'>

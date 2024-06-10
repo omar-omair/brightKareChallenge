@@ -6,7 +6,7 @@ function Tag({ content, fontColor, backgroundColor }: tagProps): ReactElement {
 
     return (
 
-        <div style={{ backgroundColor: `${backgroundColor}`, color: `${fontColor}`, /*border: `solid 1px ${fontColor}`*/ }} className={`font-semibold shadow-sm rounded-full w-fit px-2 py-1 overflow-clip`}>{content}</div>
+        <div style={{ backgroundColor: `${backgroundColor}`, color: `${fontColor}`, /*border: `solid 1px ${fontColor}`*/ }} className={`font-semibold shadow-sm rounded-full w-fit px-2 py-1 overflow-hidden`}>{content}</div>
     )
 }
 

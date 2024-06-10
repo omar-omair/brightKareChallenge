@@ -12,8 +12,8 @@ function Personal({ name, age, gender, email, phone_number, address, job }: pers
     let blueBg: string = "#F8FBFE"
     let blueFont: string = "#004080"
 
-    const [diaTags, setDiaTags] = useState<tagProps[]>([{ content: 'Sugar', backgroundColor: redBg, fontColor: redFont }, { content: 'Sugar', backgroundColor: redBg, fontColor: redFont }, { content: 'Sugar', backgroundColor: redBg, fontColor: redFont }, { content: 'Sugar', backgroundColor: redBg, fontColor: redFont }])
-    const [barTags, setBarTags] = useState<tagProps[]>([{ content: 'Sugar', backgroundColor: blueBg, fontColor: blueFont }, { content: 'Sugar', backgroundColor: blueBg, fontColor: blueFont }])
+    const [diaTags, setDiaTags] = useState<tagProps[]>([{ content: 'Asthma', backgroundColor: redBg, fontColor: redFont }, { content: 'Diabetes', backgroundColor: redBg, fontColor: redFont }, { content: 'High BP', backgroundColor: redBg, fontColor: redFont }, { content: 'Weak Heart', backgroundColor: redBg, fontColor: redFont }])
+    const [barTags, setBarTags] = useState<tagProps[]>([{ content: 'Gluten', backgroundColor: blueBg, fontColor: blueFont }, { content: 'Sugar', backgroundColor: blueBg, fontColor: blueFont }])
 
     return (
         <div className='aspect-[0.36] ml-2 mt-5 w-[25rem] rounded-lg bg-white overflow-auto shadow-md flex justify-start flex-col'>

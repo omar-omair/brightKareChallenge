@@ -30,11 +30,31 @@ function App() {
             <button className='font-semibold text-sub_tag'>My Plans</button>
           </div>
 
-          <Records />
-          <TimeLine />
-          <DatePicker futureLocked={true} />
-          <History />
-          <Personal />
+
+
+          <div className='grid grid-cols-3 grid-rows-[auto_1fr_1fr] items-start gap-4 mb-10'>
+
+            <div className='col-start-1 col-span-2 row-start-1'>
+              <Records />
+            </div>
+
+            <div className='col-start-1 col-span-1 row-start-2 row-span-2'>
+              <TimeLine />
+            </div>
+
+            <div className='col-start-2 col-span-1 row-start-2'>
+              <DatePicker futureLocked={true} />
+            </div>
+
+            <div className='col-start-2 col-span-1 row-start-3'>
+              <History />
+            </div>
+
+            <div className='col-start-3 col-span-1 row-start-1 row-span-3'>
+              <Personal />
+            </div>
+          </div>
+
 
         </div>
       </div>

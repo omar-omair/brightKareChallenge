@@ -2,6 +2,8 @@
 
 const myConstants = require('./src/indexes/constants')
 
+let desktop2 = parseFloat(myConstants.desktop) * 2
+
 export default {
   content: [
     "./index.html",
@@ -25,11 +27,19 @@ export default {
       width: {
         mobile: `${myConstants.MOBILE_W}rem`,
         desktop: `${myConstants.DESKTOP_W}rem`,
+        desktop2: `${desktop2}rem`,
+        min_content: 'min-content',
+        max_content: 'max-content',
       },
 
       minWidth: {
         mobile: `${myConstants.MOBILE_W}rem`,
         desktop: `${myConstants.DESKTOP_W}rem`,
+      },
+
+      height: {
+        desktop1: "1120px",
+        desktop2: "1016px"
       }
     },
   },

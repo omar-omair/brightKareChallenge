@@ -19,7 +19,7 @@ function Personal(): ReactElement {
     const barTags = useUserStore((state) => state.barTags)
 
     return (
-        <div className={`aspect-[0.36] w-mobile lg:w-desktop rounded-lg bg-white overflow-auto shadow-md flex justify-start flex-col`}>
+        <div className={` w-mobile max-md:aspect-[0.4] lg:h-desktop1 lg:w-desktop rounded-lg bg-white overflow-auto shadow-md flex justify-start flex-col`}>
             <header className='flex w-full items-center justify-end p-4 mb-10'>
                 <p className='text-xs text-gray-600 font-semibold opacity-60 cursor-pointer mt-[1rem]'>Edit</p>
             </header>

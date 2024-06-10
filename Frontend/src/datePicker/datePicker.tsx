@@ -9,14 +9,15 @@ import { DESKTOP_W } from '../indexes/constants';
 
 
 const DatePicker = ({ futureLocked }: { futureLocked: boolean }): ReactElement => {
-    const [currentDate, setCurrentDate] = useState(new Date());
+
+    let currentDate: Date = useDateStore((state) => state.currentDate) //reading current date from zustand store
+
     const days: Date[] = getDaysArray(currentDate.getFullYear(), currentDate.getMonth());
     const weekdays: string[] = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
     const months: string[] = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
     const changeMonth = (num: number) => {
 
-        let currentDate: Date = useDateStore((state) => state.currentDate) //reading current date from zustand store
         const currentYear = currentDate.getFullYear();
         const currentMonth = currentDate.getMonth();
 

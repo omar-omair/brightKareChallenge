@@ -1,8 +1,3 @@
 #root {
-  max-width: 1440px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
-  font-family: 'poppins';
-  box-sizing: border-box;
+    font-family: 'poppins';
 }

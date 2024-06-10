@@ -1,4 +1,4 @@
-import { ReactElement, useState } from 'react'
+import { ReactElement } from 'react'
 import Icon from '../icon'
 import history from './../assets/history.png'
 import HistoryEntry from './historyEntry'
@@ -8,7 +8,7 @@ function History(): ReactElement {
 
     const historyEntries = useUserStore((state) => state.historyEntries)
     return (
-        <div className={`w-mobile lg:w-desktop aspect-[1] flex-shrink-0 ml-2 overflow-auto flex flex-col shadow-sm rounded-lg bg-white mt-5`}>
+        <div className={`w-mobile lg:w-desktop aspect-[1] flex-shrink-0 overflow-auto flex flex-col shadow-sm rounded-lg bg-white`}>
             <header className='flex w-full items-center justify-between p-4 mb-3'>
                 <div className="flex space-x-3 items-center">
                     <Icon url={history} size={10} />

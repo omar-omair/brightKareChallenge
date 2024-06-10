@@ -1,5 +1,5 @@
 import { ReactElement } from 'react'
-import { timeLineProps } from '../types'
+import { timeLineProps } from '../indexes/types'
 
 function TimeEntry({ title, date, desc, backgroundColor, position, last }: timeLineProps): ReactElement {
 

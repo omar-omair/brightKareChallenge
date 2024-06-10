@@ -1,5 +1,5 @@
 import { create } from "zustand"
-import { cardProps, historyProps, medicationProps, tagProps, timeLineProps, personalProps } from "./types"
+import { cardProps, historyProps, medicationProps, tagProps, timeLineProps, personalProps, sideProps } from "./types"
 import bmi from '../assets/bmi.png'
 import weight from '../assets/weight.png'
 import height from '../assets/height.png'
@@ -34,6 +34,11 @@ type dateStore = {
     currentDate: Date
 }
 
+type sideBarStore = {
+    entries: sideProps[],
+    selectedEntryIndex: number,
+}
+
 export const useDateStore = create<dateStore>((set) => ({
     currentDate: new Date()
 }))
@@ -56,4 +61,9 @@ export const useUserStore = create<userStore>((set) => ({
     records: [{ unit: "", name: "BMI", value: "N/A", url: bmi }, { unit: "Kg", name: "Weight", value: "N/A", url: weight }, { unit: "Cm", name: "Height", value: "N/A", url: height }, { unit: "", name: "Blood P", value: "N/A", url: pressure }],
     notifications: 0,
     medications: [],
+}))
+
+export const useSideBarStore = create<sideBarStore>((set) => ({
+    entries: [{ content: "Profile", url: "/dashboard" }],
+    selectedEntryIndex: 0,
 }))

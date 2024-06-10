@@ -1,5 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 
+const myConstants = require('./src/indexes/constants')
+
 export default {
   content: [
     "./index.html",
@@ -16,16 +18,18 @@ export default {
         sub_tag: "#8C8C8C",
         cig_bg: "#FF8080",
         side_bar_bg: "#0056B3",
+        sub_title: "#626262",
+        picked: "#0D5FB7",
       },
 
       width: {
-        mobile: '27.25rem',
-        desktop: `30rem`,
+        mobile: `${myConstants.MOBILE_W}rem`,
+        desktop: `${myConstants.DESKTOP_W}rem`,
       },
 
       minWidth: {
-        mobile: '27.25rem',
-        desktop: `30rem`,
+        mobile: `${myConstants.MOBILE_W}rem`,
+        desktop: `${myConstants.DESKTOP_W}rem`,
       }
     },
   },

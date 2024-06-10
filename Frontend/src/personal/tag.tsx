@@ -1,5 +1,5 @@
 import { ReactElement } from 'react'
-import { tagProps } from '../types'
+import { tagProps } from '../indexes/types'
 
 function Tag({ content, fontColor, backgroundColor }: tagProps): ReactElement {
     let properties: string = `bg-[${backgroundColor}] text-[${fontColor}]`

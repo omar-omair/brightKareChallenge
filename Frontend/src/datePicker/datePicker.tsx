@@ -3,7 +3,7 @@ import Icon from '../icon';
 import timeline from './../assets/timeline.png'
 import left_arrow from './../assets/left-arrow.png'
 import right_arrow from './../assets/right-arrow.png'
-import { useDateStore } from '../store'
+import { useDateStore } from '../indexes/store'
 
 
 

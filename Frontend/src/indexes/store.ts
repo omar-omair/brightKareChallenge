@@ -1,9 +1,9 @@
 import { create } from "zustand"
 import { cardProps, historyProps, medicationProps, tagProps, timeLineProps, personalProps } from "./types"
-import bmi from './assets/bmi.png'
-import weight from './assets/weight.png'
-import height from './assets/height.png'
-import pressure from './assets/pressure.png'
+import bmi from '../assets/bmi.png'
+import weight from '../assets/weight.png'
+import height from '../assets/height.png'
+import pressure from '../assets/pressure.png'
 
 type recordStore = {
 

@@ -2,7 +2,7 @@ import { ReactElement, useState } from 'react'
 import Icon from '../icon'
 import history from './../assets/history.png'
 import HistoryEntry from './historyEntry'
-import { useUserStore } from '../store'
+import { useUserStore } from '../indexes/store'
 
 function History(): ReactElement {
 

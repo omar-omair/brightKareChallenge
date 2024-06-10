@@ -2,7 +2,7 @@ import { ReactElement } from 'react'
 import notification_icon from "../assets/notification_icon.svg"
 import avatar from "../assets/avatar.png"
 import hamburger from "../assets/hamburger.png"
-import { useUserStore } from '../store'
+import { useUserStore } from '../indexes/store'
 
 function Nav(): ReactElement {
 

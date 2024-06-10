@@ -1,5 +1,5 @@
 import { ReactElement } from 'react'
-import { historyProps } from '../types'
+import { historyProps } from '../indexes/types'
 import Icon from '../icon'
 import heart from '../assets/heart.png'
 

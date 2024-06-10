@@ -1,5 +1,5 @@
 import { ReactElement } from "react"
-import { cardProps } from "../types"
+import { cardProps } from "../indexes/types"
 import Icon from "./../icon"
 
 export default function Card({ value, unit, name, url }: cardProps): ReactElement {

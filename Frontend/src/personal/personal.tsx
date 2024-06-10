@@ -4,7 +4,7 @@ import cig from '../assets/cig.png'
 import phone from '../assets/phone-call.png'
 import mail from '../assets/mail.png'
 import Tag from './tag'
-import { useUserStore } from '../store'
+import { useUserStore } from '../indexes/store'
 
 function Personal(): ReactElement {
     /*

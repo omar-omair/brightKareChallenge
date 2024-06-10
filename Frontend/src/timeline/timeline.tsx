@@ -2,7 +2,7 @@ import { ReactElement } from 'react'
 import Icon from '../icon'
 import timeline from './../assets/timeline.png'
 import TimeEntry from './timeEntry'
-import { useUserStore } from '../store'
+import { useUserStore } from '../indexes/store'
 
 
 function TimeLine(): ReactElement {

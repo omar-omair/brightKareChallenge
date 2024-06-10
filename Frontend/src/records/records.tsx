@@ -1,6 +1,6 @@
 import { ReactElement } from "react";
 import Card from "./card"
-import { useUserStore } from "../store";
+import { useUserStore } from "../indexes/store";
 
 
 

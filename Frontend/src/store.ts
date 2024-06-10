@@ -1,5 +1,9 @@
 import { create } from "zustand"
-import { cardProps, historyProps, tagProps, timeLineProps } from "./types"
+import { cardProps, historyProps, medicationProps, tagProps, timeLineProps } from "./types"
+import bmi from './assets/bmi.png'
+import weight from './assets/weight.png'
+import height from './assets/height.png'
+import pressure from './assets/pressure.png'
 
 type recordStore = {
 
@@ -18,6 +22,7 @@ type userStore = {
     historyEntries: historyProps[],
     timeEntries: timeLineProps[],
     records: cardProps[]
+    medications: medicationProps[],
     notifications: number,
 
     /*
@@ -51,6 +56,7 @@ export const useUserStore = create<userStore>((set) => ({
     barTags: [],
     historyEntries: [],
     timeEntries: [],
-    records: [],
+    records: [{ unit: "", name: "BMI", value: "N/A", url: bmi }, { unit: "Kg", name: "Weight", value: "N/A", url: weight }, { unit: "Cm", name: "Height", value: "N/A", url: height }, { unit: "", name: "Blood P", value: "N/A", url: pressure }],
     notifications: 0,
+    medications: [],
 }))

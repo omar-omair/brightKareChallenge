@@ -3,13 +3,15 @@ import Icon from '../icon'
 import timeline from './../assets/timeline.png'
 import { timeLineProps } from '../types'
 import TimeEntry from './timeEntry'
+import { useUserStore } from '../store'
+import { MOBILE_W } from '../constants'
 
 function TimeLine(): ReactElement {
 
-    const [timeEntries, setTimeEntries] = useState<timeLineProps[]>([{ title: "Pre-Diabatic", date: "10 Wed 2024", desc: "A1c: 10.4" }, { title: "Pre-Diabatic", date: "10 Wed 2024", desc: "A1c: 10.4" }, { title: "Pre-Diabatic", date: "10 Wed 2024", desc: "A1c: 10.4" }, { title: "Pre-Diabatic", date: "10 Wed 2024", desc: "A1c: 10.4" }, { title: "Pre-Diabatic", date: "10 Wed 2024", desc: "A1c: 10.4" }, { title: "Pre-Diabatic", date: "10 Wed 2024", desc: "A1c: 10.4" }, { title: "Pre-Diabatic", date: "10 Wed 2024", desc: "A1c: 10.4" }, { title: "Pre-Diabatic", date: "10 Wed 2024", desc: "A1c: 10.4" }])
+    let timeEntries = useUserStore((state) => state.timeEntries)
 
     return (
-        <div className="w-[27.25rem] aspect-[0.72] flex-shrink-0 ml-2 overflow-auto flex flex-col shadow-sm rounded-lg bg-white mt-5">
+        <div className={`w-[${MOBILE_W}rem] aspect-[0.72] flex-shrink-0 ml-2 overflow-auto flex flex-col shadow-sm rounded-lg bg-white mt-5`}>
             <header className='flex w-full items-center justify-between p-4 mb-3'>
                 <div className="flex space-x-3 items-center">
                     <Icon url={timeline} size={10} />

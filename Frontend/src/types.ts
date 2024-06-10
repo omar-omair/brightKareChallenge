@@ -34,4 +34,14 @@ export interface tagProps {
     content: string,
     backgroundColor?: string,
     fontColor: string,
-} 
+}
+
+export interface medicationProps {
+    name: string,
+    status: string
+    dosage: string,
+    frequency: string,
+    prescribing_physician: string,
+    start_date: string,
+    end_date: string,
+}

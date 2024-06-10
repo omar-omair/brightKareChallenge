@@ -5,6 +5,7 @@ import cig from '../assets/cig.png'
 import phone from '../assets/phone-call.png'
 import mail from '../assets/mail.png'
 import Tag from './tag'
+import { MOBILE_W } from '../constants'
 
 function Personal({ name, age, gender, email, phone_number, address, job }: personalProps): ReactElement {
     let redBg: string = "#FEF8F8"
@@ -16,7 +17,7 @@ function Personal({ name, age, gender, email, phone_number, address, job }: pers
     const [barTags, setBarTags] = useState<tagProps[]>([{ content: 'Gluten', backgroundColor: blueBg, fontColor: blueFont }, { content: 'Sugar', backgroundColor: blueBg, fontColor: blueFont }])
 
     return (
-        <div className='aspect-[0.36] ml-2 mt-5 w-[25rem] rounded-lg bg-white overflow-auto shadow-md flex justify-start flex-col'>
+        <div className={`aspect-[0.36] ml-2 mt-5 w-[${MOBILE_W}rem] lg:w-[25rem] rounded-lg bg-white overflow-auto shadow-md flex justify-start flex-col`}>
             <header className='flex w-full items-center justify-end p-4 mb-10'>
                 <p className='text-xs text-gray-600 font-semibold opacity-60 cursor-pointer mt-[1rem]'>Edit</p>
             </header>

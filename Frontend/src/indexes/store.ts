@@ -92,8 +92,6 @@ export const useUserStore = create<userStore>((set) => ({
 
         let barrierBackground = "#F8FBFE"
 
-
-
         try {
 
             const response = await fetch("http://localhost:3000/dashboard/", {
@@ -126,9 +124,10 @@ export const useUserStore = create<userStore>((set) => ({
 
             let heightRecords: measaurements[] = []
             let weightRecords: measaurements[] = []
-            let sysRecords: measaurements[] = []
-            let diaRecords: measaurements[] = []
+            let systolicRecords: measaurements[] = []
+            let diastolicRecords: measaurements[] = []
 
+            // creating an array for each type of record
             userData.mesaurements.forEach(record => {
                 if (record.measaurement_type === "height") {
                     heightRecords.push(record)
@@ -137,15 +136,43 @@ export const useUserStore = create<userStore>((set) => ({
                     weightRecords.push(record)
                 }
                 else if (record.measaurement_type === "blood_pressure_systolic") {
-                    sysRecords.push(record)
+                    systolicRecords.push(record)
                 }
                 else if (record.measaurement_type === "blood_pressure_diastolic") {
-                    diaRecords.push(record)
+                    diastolicRecords.push(record)
                 }
 
             })
 
-            let newestHeight: measaurements
+            //sorting the arrays for the latest date
+
+            heightRecords.sort((a, b) => new Date(b.measurement_on).getTime() - new Date(a.measurement_on).getTime())
+            weightRecords.sort((a, b) => new Date(b.measurement_on).getTime() - new Date(a.measurement_on).getTime())
+            systolicRecords.sort((a, b) => new Date(b.measurement_on).getTime() - new Date(a.measurement_on).getTime())
+            diastolicRecords.sort((a, b) => new Date(b.measurement_on).getTime() - new Date(a.measurement_on).getTime())
+
+            // getting the first record (after sorting it should be the latest record)
+            let newestHeight: measaurements | null = heightRecords[0]
+            let newestWeight: measaurements | null = weightRecords[0]
+            let newestSystolic: measaurements | null = systolicRecords[0]
+            let newestDiastolic: measaurements | null = diastolicRecords[0]
+
+            let bmiValue = ""
+
+            if (newestHeight && newestWeight) { //to calculate bmi we need both height and weight
+                let bmiNum = parseFloat(newestWeight.measurement_value) / Math.pow(parseFloat(newestHeight.measurement_value), 2)
+                if (newestHeight.measaurement_unit == "Cm") {
+                    bmiNum = bmiNum * 10000
+
+                }
+                bmiValue = Math.round(bmiNum).toString()
+            }
+
+            let bpValue = ""
+
+            if (newestSystolic && newestDiastolic) {
+                bpValue = `${newestSystolic.measurement_value}/${newestDiastolic.measurement_value}`
+            }
 
             //mapping the backend data to the frontend interfaces
             userData.diseases.forEach(disease => {
@@ -169,15 +196,14 @@ export const useUserStore = create<userStore>((set) => ({
 
 
 
-
             useUserStore.setState({
 
                 info: {
                     name: userData.name,
                     gender: userData.sex,
                     age: userAge.toString() + " " + new Date(userData.dob).toString(),
-                    address: "N/A", // is not in the user schema of the challenge
-                    job: "N/A", // is not in the user schema of the challenge
+                    address: "Riyadh", // is not in the user schema of the challenge so I hardcoded it
+                    job: "IT", // is not in the user schema of the challenge so I hardcoded it
                     phone_number: userData.phone_number,
                     email: userData.email
                 },
@@ -186,7 +212,9 @@ export const useUserStore = create<userStore>((set) => ({
                 barTags: barriers,
                 historyEntries: historyArr,
                 timeEntries: [{ title: "hardcoded", desc: "this section is hardcoded", date: new Date(2024, 5, 2) }, { title: "hardcoded", desc: "I'm ready for this opportunity <3", date: new Date(2024, 5, 2) }, { title: "hardcoded", desc: "this section is hardcoded", date: new Date(2024, 5, 2) }, { title: "hardcoded2", desc: "this section is hardcoded too", date: new Date(2024, 4, 21) }, { title: "hardcoded", desc: "Hello world!", date: new Date(2024, 5, 2) }, { title: "hardcoded2", desc: "this section is hardcoded too", date: new Date(2024, 4, 21) }], // hardcoded as the challenge did not specify where to get the info from
-                medications: meds
+                medications: meds,
+                records: [{ unit: "", name: "BMI", value: bmiValue || "N/A", url: bmi }, { unit: newestWeight.measaurement_unit || "Kg", name: "Weight", value: newestWeight.measurement_value || "N/A", url: weight }, { unit: newestHeight.measaurement_unit || "Cm", name: "Height", value: newestHeight.measurement_value || "N/A", url: height }, { unit: "", name: "Blood P", value: bpValue || "N/A", url: pressure }],
+
 
             })
         }

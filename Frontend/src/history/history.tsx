@@ -18,8 +18,8 @@ function History(): ReactElement {
             </header>
             <div className='p-4'>
                 {historyEntries.map((historyEntry, index) => (
-                    <HistoryEntry key={index} title={historyEntry.title}
-                        desc={historyEntry.desc} backgroundColor={`${index % 2 !== 0 ? "bg-icon_bg" : ""}`} />
+                    <HistoryEntry key={index} history_name={historyEntry.history_name}
+                        description={historyEntry.description} backgroundColor={`${index % 2 !== 0 ? "bg-icon_bg" : ""}`} />
                 ))}
             </div>
         </div>

@@ -37,7 +37,7 @@ router.post("/register", async (req: Request, res: Response) => {
 
             })
 
-            const token = jwt.encode({ username: validData.username, ex: Math.floor(Date.now() / 1000) + 1800 }, secret); // create token with expiration date of 30mins
+            const token = jwt.encode({ id: newUser.id, ex: Math.floor(Date.now() / 1000) + 1800 }, secret); // create token with expiration date of 30mins
             res.status(200).json({ token: token }) // returning the token
 
         }
@@ -84,7 +84,7 @@ router.post("/login", async function (req: Request, res: Response) {
 
         //check if the user exists and that the password after hashing matches
         if (user && bcrypt.compareSync(req.body.password, user.password)) {
-            const token = jwt.encode({ username: user.username, ex: Math.floor(Date.now() / 1000) + 1800 }, secret); // create token with expiration date of 30mins
+            const token = jwt.encode({ id: user.id, ex: Math.floor(Date.now() / 1000) + 1800 }, secret); // create token with expiration date of 30mins
             res.status(200).json({ token: token }) // returning the token
         }
 

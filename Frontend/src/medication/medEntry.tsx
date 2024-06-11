@@ -12,29 +12,39 @@ function medEntry(props: medProps): ReactElement {
     }
 
     else if (props.status == "Discontinued") {
-        fontColor = "#FFCCCC"
-        backgroundColor = "#FF3D3D"
+        backgroundColor = "#FFCCCC"
+        fontColor = "#FF3D3D"
     }
     else {
         fontColor = "#D1DCE8"
         backgroundColor = "#3F6F9F"
     }
 
+    let start_date = "-"
+    let end_date = "-"
+
+    if (props.start_date !== undefined) {
+        start_date = props.start_date.toString().split("T")[0]
+    }
+
+    if (props.end_date != null) {
+        end_date = props.end_date.toString().split("T")[0]
+    }
 
     return (
 
         <>
-            <td className="border px-4 py-2 text-center border-none bg-icon_bg">{props.name}</td>
-            <td className="border px-4 py-2 text-center border-none ">
-                <span style={{ backgroundColor: backgroundColor, color: fontColor }} className="px-2 inline-flex text-xl leading-5 font-semibold rounded-full">
+            <td className="px-4 py-2 text-center bg-icon_bg">{props.name}</td>
+            <td className="px-4 py-2 text-center flex justify-center">
+                <span style={{ backgroundColor: backgroundColor, color: fontColor }} className="w-48 h-12 flex items-center justify-center px-2 py-2 text-xl leading-5 shadow-sm font-semibold rounded-xl">
                     {props.status}
                 </span>
             </td>
-            <td className="border px-4 py-2 text-center border-none bg-icon_bg">{props.dosage}</td>
-            <td className="border px-4 py-2 text-center border-none">{props.frequency}</td>
-            <td className="border px-4 py-2 text-center border-none bg-icon_bg">{props.prescribing_physician}</td>
-            <td className="border px-4 py-2 text-center border-none">{props.start_date || "-"}</td>
-            <td className="border px-4 py-2 text-center border-none bg-icon_bg">{props.end_date || "-"}</td>
+            <td className="px-4 py-2 text-center  bg-icon_bg">{props.dosage}</td>
+            <td className="px-4 py-2 text-center">{props.frequency}</td>
+            <td className="px-4 py-2 text-center  bg-icon_bg">{props.prescribing_physician}</td>
+            <td className="px-4 py-2 text-center">{start_date || "-"}</td>
+            <td className="px-4 py-2 text-center  bg-icon_bg">{end_date || "-"}</td>
         </>
     )
 }

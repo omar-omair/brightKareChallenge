@@ -1,4 +1,4 @@
-import { ReactElement } from 'react'
+import { ReactElement, useEffect } from 'react'
 import Medication from '../medication/medication'
 import Personal from '../personal/personal'
 import DatePicker from '../datePicker/datePicker'
@@ -11,10 +11,16 @@ import { useUserStore } from '../indexes/store'
 
 function Dashboard(): ReactElement {
     let user = useUserStore()
+
+    useEffect(() => {
+        user.getServerProps() //getting the user info 
+    }, [])
+
+
     return (
         <>
             <div className='flex max-lg:flex-col max-lg:items-center'>
-                <div className=' w-1/5 hidden lg:block min-h-full min-w-mobile'>
+                <div className=' w-1/5 hidden xl:block min-h-full min-w-mobile'>
                     <Sidebar />
                 </div>
                 <div id="container" className={`flex flex-col flex-shrink-0 space-y-5`}>

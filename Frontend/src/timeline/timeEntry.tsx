@@ -6,6 +6,8 @@ function TimeEntry({ title, date, desc, backgroundColor, position, last }: timeL
     let height: string = "100%" // this is the height of the blue line
     let top: string = "0" // this is the top position of the blue line
 
+    let weekdays: string[] = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
+
     if (position == 0 || position == last) {
         height = "50%" // if the element is the first or the last the line should be half the entry length
         if (position == 0) {
@@ -16,7 +18,7 @@ function TimeEntry({ title, date, desc, backgroundColor, position, last }: timeL
     return (
         <div className={`${backgroundColor} h-16 relative flex items-center justify-start px-5`}>
             <div>
-                <p className='leading-5 text-xs w-12 text-gray-600 font-semibold'>{date}</p>
+                <p className='leading-5 text-xs w-12 text-gray-600 font-semibold'>{date.getDate()} {weekdays[date.getDay()]} {date.getFullYear()}</p>
             </div>
             <div className='h-full flex items-center ml-3'>
                 <div className=' rounded-full w-5 h-5 bg-outer_ellipse flex justify-center items-center'>

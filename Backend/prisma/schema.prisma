@@ -18,15 +18,22 @@ model medical_history {
   history_name String
   description  String
   disease      disease[]
-  patient      patient   @relation(fields: [patientId], references: [id])
-  patientId    String    @unique
+  patient      patient   @relation(fields: [patient_id], references: [id])
+  patient_id   String
 }
 
 model disease {
-  disease_id   String          @id @default(uuid())
+  disease_id   String            @id @default(uuid())
   disease_name String
-  history      medical_history @relation(fields: [history_id], references: [history_id])
-  history_id   String
+  history      medical_history[]
+  patient      patient[]         @relation("patientDiseases")
+}
+
+model barrier {
+  id           String  @id @default(uuid())
+  barrier_name String
+  patient      patient @relation(fields: [patient_id], references: [id])
+  patient_id   String
 }
 
 model measurement {
@@ -76,6 +83,8 @@ model patient {
   doctors      doctor[]
   medications  prescribed_medication[]
   mesaurements measurement[]
+  barriers     barrier[]
+  diseases     disease[]               @relation("patientDiseases")
 }
 
 model doctor {
@@ -95,6 +104,7 @@ model department {
 
 enum mesaurement_types {
   weight
+  height
   blood_pressure_systolic
   blood_pressure_diastolic
 }

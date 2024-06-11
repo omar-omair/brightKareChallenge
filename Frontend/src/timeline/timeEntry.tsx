@@ -1,14 +1,15 @@
 import { ReactElement } from 'react'
 import { timeLineProps } from '../indexes/types'
+import { useDateStore } from '../indexes/store'
 
-function TimeEntry({ title, date, desc, backgroundColor, position, last }: timeLineProps): ReactElement {
+function TimeEntry({ title, date, desc, backgroundColor, position }: timeLineProps): ReactElement {
 
     let height: string = "100%" // this is the height of the blue line
     let top: string = "0" // this is the top position of the blue line
 
     let weekdays: string[] = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
 
-    if (position == 0 || position == last) {
+    if (position == 0 || position == useDateStore.getState().last) {
         height = "50%" // if the element is the first or the last the line should be half the entry length
         if (position == 0) {
             top = "50%" // the first element's line should start at the circle

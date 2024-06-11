@@ -1,5 +1,5 @@
 import { create } from "zustand"
-import { cardProps, historyProps, tagProps, timeLineProps, personalProps, sideProps, medProps, userData } from "./types"
+import { cardProps, historyProps, tagProps, timeLineProps, personalProps, sideProps, medProps, userData, measaurements } from "./types"
 import bmi from '../assets/bmi.png'
 import weight from '../assets/weight.png'
 import height from '../assets/height.png'
@@ -31,6 +31,7 @@ type dateStore = {
     currentDate: Date
     weekdays: string[],
     reorderDays: () => void
+    last: number
 }
 
 type sideBarStore = {
@@ -43,6 +44,7 @@ type sideBarStore = {
 export const useDateStore = create<dateStore>((set) => ({
     currentDate: new Date(),
     weekdays: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
+    last: 0,
     reorderDays: (): void => {
         const weekdays: string[] = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
         let startIndex: number = useDateStore.getState().currentDate.getDay();
@@ -61,7 +63,7 @@ export const useUserStore = create<userStore>((set) => ({
     info: {
         name: "N/A",
         gender: "N/A",
-        age: 0,
+        age: "0",
         address: "N/A",
         email: "N/A",
         job: "N/A",
@@ -122,6 +124,30 @@ export const useUserStore = create<userStore>((set) => ({
             let meds: medProps[] = []
             let historyArr: historyProps[] = []
 
+            let heightRecords: measaurements[] = []
+            let weightRecords: measaurements[] = []
+            let sysRecords: measaurements[] = []
+            let diaRecords: measaurements[] = []
+
+            userData.mesaurements.forEach(record => {
+                if (record.measaurement_type === "height") {
+                    heightRecords.push(record)
+                }
+                else if (record.measaurement_type === "weight") {
+                    weightRecords.push(record)
+                }
+                else if (record.measaurement_type === "blood_pressure_systolic") {
+                    sysRecords.push(record)
+                }
+                else if (record.measaurement_type === "blood_pressure_diastolic") {
+                    diaRecords.push(record)
+                }
+
+            })
+
+            let newestHeight: measaurements
+
+            //mapping the backend data to the frontend interfaces
             userData.diseases.forEach(disease => {
                 diseases.push({ content: disease.disease_name, fontColor: diseaseFontColor, backgroundColor: diseaseBackground })
             })
@@ -142,12 +168,14 @@ export const useUserStore = create<userStore>((set) => ({
             })
 
 
+
+
             useUserStore.setState({
 
                 info: {
                     name: userData.name,
                     gender: userData.sex,
-                    age: userAge,
+                    age: userAge.toString() + " " + new Date(userData.dob).toString(),
                     address: "N/A", // is not in the user schema of the challenge
                     job: "N/A", // is not in the user schema of the challenge
                     phone_number: userData.phone_number,
@@ -157,7 +185,7 @@ export const useUserStore = create<userStore>((set) => ({
                 diaTags: diseases,
                 barTags: barriers,
                 historyEntries: historyArr,
-                timeEntries: [{ title: "hardcoded", desc: "this section is hardcoded", date: new Date(2024, 6, 1) }, { title: "hardcoded", desc: "this section is hardcoded", date: new Date(2024, 6, 1) }, { title: "hardcoded", desc: "this section is hardcoded", date: new Date(2024, 6, 1) }, { title: "hardcoded2", desc: "this section is hardcoded too", date: new Date(2024, 5, 21) }], // hardcoded as the challenge did not specify where to get the info from
+                timeEntries: [{ title: "hardcoded", desc: "this section is hardcoded", date: new Date(2024, 5, 2) }, { title: "hardcoded", desc: "I'm ready for this opportunity <3", date: new Date(2024, 5, 2) }, { title: "hardcoded", desc: "this section is hardcoded", date: new Date(2024, 5, 2) }, { title: "hardcoded2", desc: "this section is hardcoded too", date: new Date(2024, 4, 21) }, { title: "hardcoded", desc: "Hello world!", date: new Date(2024, 5, 2) }, { title: "hardcoded2", desc: "this section is hardcoded too", date: new Date(2024, 4, 21) }], // hardcoded as the challenge did not specify where to get the info from
                 medications: meds
 
             })

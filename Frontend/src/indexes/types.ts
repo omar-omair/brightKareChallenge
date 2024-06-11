@@ -11,7 +11,6 @@ export interface timeLineProps {
     date: Date,
     backgroundColor?: string,
     position?: number,
-    last?: number
 }
 
 export interface historyProps {
@@ -23,7 +22,7 @@ export interface historyProps {
 export interface personalProps {
     name: string,
     gender: string,
-    age: number,
+    age: string,
     address?: string,
     job?: string,
     phone_number: string,
@@ -61,7 +60,7 @@ interface history {
     description: string
 }
 
-interface measaurements {
+export interface measaurements {
     measurement_on: Date,
     measaurement_type: string,
     measaurement_unit: string,

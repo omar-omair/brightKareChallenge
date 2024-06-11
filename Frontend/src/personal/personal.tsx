@@ -18,6 +18,10 @@ function Personal(): ReactElement {
     const diaTags = useUserStore((state) => state.diaTags)
     const barTags = useUserStore((state) => state.barTags)
 
+    let age = info.age.split(' ')[0]
+    let dob = `(${info.age.split(' ')[3]}-${info.age.split(' ')[2]}-${info.age.split(' ')[4]})` //splitting the date string from the time string
+    console.log(info.age)
+
     return (
         <div className={` w-mobile max-md:aspect-[0.4] lg:h-desktop1 lg:w-desktop rounded-lg bg-white overflow-auto shadow-md flex justify-start flex-col`}>
             <header className='flex w-full items-center justify-end p-4 mb-10'>
@@ -31,19 +35,19 @@ function Personal(): ReactElement {
                 <p className='text-xl'>{info.name}</p>
             </div>
             <div className='grid grid-cols-2 place-self-center mb-10 gap-x-32 gap-y-10 '>
-                <div className='place-self-center'>
+                <div className='place-self-center flex flex-col items-center'>
                     <p>{info.gender}</p>
                     <p className='text-sub_tag leading-8'>Gender</p>
                 </div>
-                <div className='place-self-center'>
-                    <p>{info.age}</p>
+                <div className='place-self-center flex flex-col items-center'>
+                    <p>{age} <span className='text-xs text-sub_tag'>{dob}</span></p>
                     <p className='text-sub_tag leading-8'>Age</p>
                 </div>
-                <div className='place-self-center'>
+                <div className='place-self-center flex flex-col items-center'>
                     <p>{info.address}</p>
                     <p className='text-sub_tag leading-8'>Address</p>
                 </div>
-                <div className='place-self-center'>
+                <div className='place-self-center flex flex-col items-center'>
                     <p>{info.job}</p>
                     <p className='text-sub_tag leading-8'>Job</p>
                 </div>

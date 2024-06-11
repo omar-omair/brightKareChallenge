@@ -36,7 +36,9 @@ type dateStore = {
 type sideBarStore = {
     entries: sideProps[],
     selectedEntryIndex: number,
+    visible: boolean
 }
+
 
 export const useDateStore = create<dateStore>((set) => ({
     currentDate: new Date(),
@@ -118,7 +120,7 @@ export const useUserStore = create<userStore>((set) => ({
             let diseases: tagProps[] = []
             let barriers: tagProps[] = []
             let meds: medProps[] = []
-
+            let historyArr: historyProps[] = []
 
             userData.diseases.forEach(disease => {
                 diseases.push({ content: disease.disease_name, fontColor: diseaseFontColor, backgroundColor: diseaseBackground })
@@ -133,6 +135,10 @@ export const useUserStore = create<userStore>((set) => ({
                     name: med.medication.medication_name, status: med.status, frequency: med.frequency,
                     prescribing_physician: med.prescribing_physician.name, dosage: med.dosage, start_date: med.start_date, end_date: med.end_date,
                 })
+            })
+
+            userData.history.forEach(history => {
+                historyArr.push({ history_name: history.history_name, description: history.description })
             })
 
 
@@ -150,7 +156,7 @@ export const useUserStore = create<userStore>((set) => ({
 
                 diaTags: diseases,
                 barTags: barriers,
-                historyEntries: userData.history as historyProps[],
+                historyEntries: historyArr,
                 timeEntries: [{ title: "hardcoded", desc: "this section is hardcoded", date: new Date(2024, 6, 1) }, { title: "hardcoded", desc: "this section is hardcoded", date: new Date(2024, 6, 1) }, { title: "hardcoded", desc: "this section is hardcoded", date: new Date(2024, 6, 1) }, { title: "hardcoded2", desc: "this section is hardcoded too", date: new Date(2024, 5, 21) }], // hardcoded as the challenge did not specify where to get the info from
                 medications: meds
 
@@ -163,4 +169,5 @@ export const useUserStore = create<userStore>((set) => ({
 export const useSideBarStore = create<sideBarStore>((set) => ({
     entries: [{ content: "Profile", url: "/dashboard" }],
     selectedEntryIndex: 0,
+    visible: false
 }))

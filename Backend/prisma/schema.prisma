@@ -31,12 +31,12 @@ model disease {
 
 model measurement {
   measurement_id    String            @id @default(uuid())
-  name              String
+  patient           patient           @relation(fields: [owner_id], references: [id])
   owner_id          String
   measaurement_type mesaurement_types
   measurement_value String
   measaurement_unit String
-  measurement_on    DateTime
+  measurement_on    DateTime          @default(now())
   created_at        DateTime          @default(now())
 }
 
@@ -47,10 +47,11 @@ model prescribed_medication {
   patient_id            String
   status                status
   frequency             String
+  dosage                String
   prescribing_physician doctor     @relation(fields: [doctor_id], references: [id])
   doctor_id             String
-  start_date            DateTime
-  end_date              DateTime
+  start_date            DateTime   @default(now())
+  end_date              DateTime?
 
   @@id([medication_id, patient_id, start_date])
 }
@@ -66,7 +67,7 @@ model patient {
   legal_id     String                  @unique
   name         String
   dob          DateTime
-  history      medical_history?
+  history      medical_history[]
   sex          gender
   username     String                  @unique
   password     String
@@ -74,10 +75,12 @@ model patient {
   phone_number String                  @unique
   doctors      doctor[]
   medications  prescribed_medication[]
+  mesaurements measurement[]
 }
 
 model doctor {
   id                     String                  @id @default(uuid())
+  name                   String
   department             department              @relation(fields: [department_id], references: [department_id])
   department_id          String
   patients               patient[]
@@ -102,8 +105,7 @@ enum gender {
 }
 
 enum status {
-  active
-  completed
-  not_Completed
-  pending
+  Active
+  Discontinued
+  On_Hold
 }

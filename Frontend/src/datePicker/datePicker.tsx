@@ -1,10 +1,10 @@
-import { ReactElement, useState } from 'react';
+import { ReactElement, useEffect } from 'react';
 import Icon from '../icon';
 import timeline from './../assets/timeline.png'
 import left_arrow from './../assets/left-arrow.png'
 import right_arrow from './../assets/right-arrow.png'
 import { useDateStore } from '../indexes/store'
-import { DESKTOP_W } from '../indexes/constants';
+
 
 
 
@@ -13,10 +13,15 @@ const DatePicker = ({ futureLocked }: { futureLocked: boolean }): ReactElement =
     let currentDate: Date = useDateStore((state) => state.currentDate) //reading current date from zustand store
 
     const days: Date[] = getDaysArray(currentDate.getFullYear(), currentDate.getMonth());
-    const weekdays: string[] = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
     const months: string[] = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+    let weekdays = useDateStore((state) => state.weekdays) //reading weekdays from the zustand store
 
-    const changeMonth = (num: number) => {
+    useEffect(() => {
+        useDateStore.setState({ currentDate: new Date(new Date().getFullYear(), new Date().getMonth(), 1) }); //selects the first day of the current month at the start
+        useDateStore.getState().reorderDays() // reorders the days to fit the current month
+    }, [])
+
+    const changeMonth = async (num: number) => {
 
         const currentYear = currentDate.getFullYear();
         const currentMonth = currentDate.getMonth();
@@ -44,6 +49,7 @@ const DatePicker = ({ futureLocked }: { futureLocked: boolean }): ReactElement =
         // Set the new date with new year and month
         const newDate = new Date(newYear, newMonth, 1);
         useDateStore.setState({ currentDate: newDate });
+        useDateStore.getState().reorderDays() // Reorder the days to fit the new month
     }
 
     return (
@@ -59,9 +65,9 @@ const DatePicker = ({ futureLocked }: { futureLocked: boolean }): ReactElement =
 
             <div className='px-6'>
                 <div className='flex font-semibold justify-between  items-center mb-10'>
-                    <img src={left_arrow} alt="decrement date" className='active:opacity-60 cursor-pointer w-4 h-4' onClick={() => changeMonth(-1)} />
+                    <img src={left_arrow} alt="decrement date" className='active:opacity-60 cursor-pointer w-4 h-4' onClick={async () => await changeMonth(-1)} />
                     <p className='text-xl'>{`${months[currentDate.getMonth()]} ${currentDate.getFullYear()}`}</p>
-                    <img src={right_arrow} alt="increment date" className='active:opacity-60 cursor-pointer w-4 h-4' onClick={() => changeMonth(1)} />
+                    <img src={right_arrow} alt="increment date" className='active:opacity-60 cursor-pointer w-4 h-4' onClick={async () => await changeMonth(1)} />
                 </div>
 
                 <div className="grid grid-cols-7 gap-3">

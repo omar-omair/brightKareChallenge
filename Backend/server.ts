@@ -15,6 +15,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 router.use(bodyParser.urlencoded({ extended: true }));
 router.use("/auth", require("./routers/auth"));
+router.use("/dashboard", require("./routers/dashboard"));
+
 
 app.use(router);
 

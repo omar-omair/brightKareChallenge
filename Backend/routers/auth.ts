@@ -105,37 +105,5 @@ router.post("/login", async function (req: Request, res: Response) {
 
 //Gets the name of the patient when given the correct token
 
-router.get("/status", async function (req: Request, res: Response) {
-
-    // Check if the X-Auth header is set
-    if (!req.headers["x-auth"]) {
-        return res.status(401).json({ error: "Missing X-Auth header" });
-    }
-
-    // X-Auth should contain the token 
-    const token = req.headers["x-auth"];
-    try {
-        const decoded = jwt.decode(token, secret);
-        const now = Math.floor(Date.now() / 1000);
-        if (decoded.exp <= now) {
-            throw new Error('Token has expired');
-        }
-
-        let user = await prisma.patient.findUnique({
-            where: {
-                username: decoded.username
-            },
-            select: {
-                name: true
-            }
-        })
-
-    }
-    catch (ex) {
-        res.status(401).json({ error: ex || "Invalid JWT" });
-    }
-});
-
-
 
 module.exports = router;
